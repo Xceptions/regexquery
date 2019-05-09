@@ -108,6 +108,6 @@ function RegexQuery ( query ) {
 }
 
 module.exports = {
-    RegexQuery,
-    RegQuery
+    RegexQueryClass,
+    RegexQuery
 }
