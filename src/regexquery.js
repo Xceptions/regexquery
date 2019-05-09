@@ -1,5 +1,5 @@
 
-class RegexQuery {
+class RegexQueryClass {
     constructor ( query ) {
         this.result;
         this.todo = {
@@ -102,8 +102,8 @@ class RegexQuery {
 }
 
 // An alternative if you wish to use it as a function
-function RegQuery ( query ) {
-    let result = new RegexQuery( query ).result;
+function RegexQuery ( query ) {
+    let result = new RegexQueryClass( query ).result;
     return result;
 }
 
