@@ -2,7 +2,7 @@
 Query Language for Regular Expressions
 
 
-How to use RegexQuery
+How to use RegexQueryLanguage
 
 
     RegexQuery("FIND a IN happy") // returns the matched string
