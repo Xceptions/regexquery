@@ -1,3 +1,5 @@
+"use strict"
+
 
 class RegexQueryClass {
     constructor ( query ) {
@@ -47,6 +49,11 @@ class RegexQueryClass {
                 this.expression.shift();
                 this.todo.subject = this.expression[0];
                 break;
+            case "COUNT":
+                this.todo.action = _match;
+                this.expression.shift();
+                this.todo.subject = this.expression[0];
+                break;
             case "IN":
                 this.todo.preposition = _match;
                 this.expression.shift();
@@ -72,14 +79,16 @@ class RegexQueryClass {
     }
 
     processQuery () {
-        if ( this.todo.action == "FIND" ) {
+        if ( this.todo.action == "FIND" )
+        {
             let to_find = new RegExp(this.todo.subject, this.todo.global_status);
             let str = this.todo.object;
             this.result = to_find.exec(str)
             return this.result;
         }
         else
-        if ( this.todo.action == "IS" ) {
+        if ( this.todo.action == "IS" )
+        {
             let to_find = new RegExp(this.todo.subject, this.todo.global_status);
             let str = this.todo.object;
             if ( to_find.test(str) ) {
@@ -90,12 +99,22 @@ class RegexQueryClass {
             return this.result;
         }
         else
-        if ( this.todo.action == "REPLACE" ) {
+        if ( this.todo.action == "REPLACE" )
+        {
             let subject = this.todo.subject;
             let conj_object = this.todo.conj_object;
             let object = this.todo.object;
 
             this.result = object.replace(subject, conj_object);
+            return this.result;
+        }
+        else
+        if (this.todo.action == "COUNT")
+        {
+            let subject = this.todo.subject;
+            let object = this.todo.object;
+            let re = new RegExp(subject, this.todo.global_status);
+            this.result = object.match(re).length;
             return this.result;
         }
     }
